@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PastelPages</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌸 PastelPages Scrapbook 🌸</h1>
+        
+        <div class="create-form">
+            <h2>Create New Page</h2>
+            <form action="/create" method="post">
+                <input type="text" name="title" placeholder="Page Title" required>
+                <textarea name="description" placeholder="Page Description"></textarea>
+                <button type="submit" class="btn-create">
+                    <i class="fas fa-plus"></i> Create Page
+                </button>
+            </form>
+        </div>
+
+        <div th:if="${#lists.isEmpty(pages)}" class="empty-message">
+            <p>No pages yet. Create your first page!</p>
+        </div>
+
+        <div class="page-grid" th:unless="${#lists.isEmpty(pages)}">
+            <div class="page-card" th:each="page : ${pages}">
+                <a th:href="@{/page/{id}(id=${page.id})}" class="card-link">
+                    <div class="card-content">
+                        <h3 th:text="${page.title}"></h3>
+                        <p th:text="${page.description}"></p>
+                        <div class="preview-images">
+                            <i class="fas fa-image" th:each="img : ${page.imagePaths}"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
