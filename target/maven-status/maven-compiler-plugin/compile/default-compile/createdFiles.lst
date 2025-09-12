@@ -1,0 +1,5 @@
+com\example\pastelpages\repository\PageRepository.class
+com\example\pastelpages\PastelPagesApplication.class
+com\example\pastelpages\controller\PageController.class
+com\example\pastelpages\service\PageService.class
+com\example\pastelpages\model\ScrapbookPage.class
